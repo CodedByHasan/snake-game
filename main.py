@@ -1,31 +1,35 @@
 from turtle import Screen
+import os
 import time
-from snake import Snake
-from food import Food
-from scoreboard import Scoreboard
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "src")))
+
+from snake_game.snake import Snake
+from snake_game.food import Food
+from snake_game.scoreboard import Scoreboard
 
 
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.bgcolor("black")
-screen.title("My Snake Game")
-screen.tracer(0)
+SCREEN = Screen()
+SCREEN.setup(width=600, height=600)
+SCREEN.bgcolor("black")
+SCREEN.title("Snake Game")
+SCREEN.tracer(0)
 
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
 
-screen.listen()
-screen.onkey(snake.up, "Up")
-screen.onkey(snake.down, "Down")
-screen.onkey(snake.left, "Left")
-screen.onkey(snake.right, "Right")
+SCREEN.listen()
+SCREEN.onkey(snake.up, "Up")
+SCREEN.onkey(snake.down, "Down")
+SCREEN.onkey(snake.left, "Left")
+SCREEN.onkey(snake.right, "Right")
 
-game_is_on = True
+GAME_IS_ON = True
 
-
-while game_is_on:
-    screen.update()
+while GAME_IS_ON:
+    SCREEN.update()
     time.sleep(0.25)
     snake.move()
 
@@ -42,14 +46,14 @@ while game_is_on:
         or snake.head.ycor() > 280
         or snake.head.ycor() < -280
     ):
-        game_is_on = False
+        GAME_IS_ON = False
         scoreboard.game_over()
 
     # Detect collision with tail
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            game_is_on = False
+            GAME_IS_ON = False
             scoreboard.game_over()
 
 
-screen.exitonclick()
+SCREEN.exitonclick()
