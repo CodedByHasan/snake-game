@@ -5,14 +5,7 @@ import pytest
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
 from snake_game.snake import Snake
-
-# Constants from snake.py
-STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
-MOVE_DISTANCE = 20
-UP = 90
-DOWN = 270
-LEFT = 180
-RIGHT = 0
+from snake_game.constants import STARTING_POSITIONS, MOVE_DISTANCE, UP, DOWN, LEFT, RIGHT
 
 
 @pytest.fixture
