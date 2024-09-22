@@ -13,8 +13,16 @@ source .venv/bin/activate # use virtual env
 
 To play the snake game simply run the `main.py`:
 
-```
+```python
 python3 main.py
+```
+
+## Tests
+
+Unit tests are located in [tests](./tests/) directory. To run the tests:
+
+```python
+pytest test/
 ```
 
 ## Acknowledgments
