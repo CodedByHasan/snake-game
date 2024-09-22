@@ -30,17 +30,17 @@ def test_food_refresh(food, monkeypatch):
         # Return mock values based on the call order
         return random_x, random_y
 
+    def mock_goto(x, y):
+        return (x, y)
+
     # Apply the monkeypatch to the random.randint function
     monkeypatch.setattr("random.randint", mock_randint)
 
-    # Create a mock for the goto method
-    with monkeypatch.context() as m:
-        # Replace the `goto` method on the food object with a
-        # mock lamda function
-        mock_goto = m.setattr(food, "goto", lambda x, y: (x, y))
+    # Apply the monkeypatch to the foog.goto method
+    monkeypatch.setattr(food, "goto", mock_goto)
 
-        # Call the refresh method, which should use the mocked random values
-        food.refresh()
+    # Call the refresh method, which should use the mocked random values
+    food.refresh()
 
-        # Check if the mock_goto was called with the correct arguments
-        assert food.goto(random_x, random_y) == (random_x, random_y)
+    # Check if the mock_goto was called with the correct arguments
+    assert food.goto(random_x, random_y) == (random_x, random_y)
