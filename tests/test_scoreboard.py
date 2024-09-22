@@ -38,3 +38,17 @@ def test_update_scoreboard(scoreboard):
         mock_write.assert_called_once_with(
             "Score: 0", align="center", font=("Arial", 24, "normal")
         )
+
+
+def test_game_over(scoreboard):
+    with patch.object(scoreboard, "penup") as mock_penup, \
+         patch.object(scoreboard, "goto") as mock_goto, \
+         patch.object(scoreboard, "write") as mock_write:
+
+        scoreboard.game_over()
+
+        mock_penup.assert_called_once()
+        mock_goto.assert_called_once_with(0, 0)
+        mock_write.assert_called_once_with(
+            "GAME OVER", align="center", font=("Arial", 24, "normal")
+        )
