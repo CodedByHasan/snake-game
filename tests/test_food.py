@@ -1,5 +1,6 @@
 import sys
 import os
+from unittest import mock
 import pytest
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
@@ -9,7 +10,8 @@ from snake_game.food import Food
 
 @pytest.fixture
 def food():
-    return Food()
+    with mock.patch("snake_game.food.Turtle") as mock_turtle:
+        return Food()
 
 
 def test_food_init(food):
