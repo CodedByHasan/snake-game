@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  lint:
+  pytest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,4 +25,4 @@ jobs:
 
       - name: Running tests
         run: |
-          pytest test/
+          pytest tests/
