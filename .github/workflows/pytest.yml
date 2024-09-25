@@ -1,13 +1,13 @@
-name: Pylint Check
+name: Pytest
 
 on:
-  pull_request: # Trigger on pull request events
-    types: [opened, synchronize, reopened] # Run when a PR is opened, updated, or reopened
+  pull_request:
+    # Run when a PR is opened, updated, or reopened
+    types: [opened, synchronize, reopened]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,8 +20,9 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install pylint
+          python3 --version
+          pip install pytest
 
-      - name: Analysing the code with pylint
+      - name: Running tests
         run: |
-          pylint $(git ls-files '*.py')
+          pytest test/
