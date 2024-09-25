@@ -1,0 +1,27 @@
+name: Pylint Check
+
+on:
+  pull_request: # Trigger on pull request events
+    types: [opened, synchronize, reopened] # Run when a PR is opened, updated, or reopened
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pylint
+
+      - name: Analysing the code with pylint
+        run: |
+          pylint $(git ls-files '*.py')
