@@ -18,7 +18,9 @@ from snake_game.constants import (
 
 @pytest.fixture
 def snake():
-    with patch("snake_game.snake.Turtle", MagicMock(), autospec=True) as mock_turtle:
+    # Mock the Turtle class and Screen class to avoid GUI initialization
+    with patch("snake_game.snake.Turtle", MagicMock(), autospec=True) as mock_turtle, \
+         patch("turtle.Screen", MagicMock()):
         return Snake()
 
 
