@@ -1,6 +1,6 @@
 import sys
 import os
-from unittest import mock
+from unittest.mock import patch, MagicMock
 import pytest
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
@@ -10,7 +10,7 @@ from snake_game.food import Food
 
 @pytest.fixture
 def food():
-    with mock.patch("snake_game.food.Turtle") as mock_turtle:
+    with patch("snake_game.food.Turtle", MagicMock()) as mock_turtle:
         return Food()
 
 

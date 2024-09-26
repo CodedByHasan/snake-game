@@ -1,6 +1,6 @@
 import sys
 import os
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 import pytest
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
@@ -10,7 +10,8 @@ from snake_game.scoreboard import Scoreboard
 
 @pytest.fixture
 def scoreboard():
-    return Scoreboard()
+    with patch("snake_game.scoreboard.Turtle", MagicMock()) as mock_turtle:
+        return Scoreboard()
 
 
 def test_scoreboard_init(scoreboard):
