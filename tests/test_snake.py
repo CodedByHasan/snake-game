@@ -5,7 +5,14 @@ import pytest
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
 from snake_game.snake import Snake
-from snake_game.constants import STARTING_POSITIONS, MOVE_DISTANCE, UP, DOWN, LEFT, RIGHT
+from snake_game.constants import (
+    STARTING_POSITIONS,
+    MOVE_DISTANCE,
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+)
 
 
 @pytest.fixture
@@ -56,10 +63,7 @@ def test_extend(snake):
         (RIGHT, LEFT, RIGHT),
     ],
 )
-def test_opposite_direction(snake,
-                            initial_heading,
-                            new_direction,
-                            expected_heading):
+def test_opposite_direction(snake, initial_heading, new_direction, expected_heading):
     """Test that the snake cannot turn in the opposite direction."""
     snake.head.setheading(initial_heading)
 
