@@ -23,16 +23,6 @@ jobs:
           python3 --version
           pip install pytest
 
-      - name: Install Xvfb
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb  # Install Xvfb
-
-      - name: Start Xvfb
-        run: |
-          Xvfb :99 -screen 0 1024x768x16 &  # Start Xvfb in the background
-          export DISPLAY=:99  # Set the DISPLAY environment variable
-
       - name: Running tests
         run: |
           pytest tests/
