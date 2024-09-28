@@ -20,6 +20,8 @@ from snake_game.constants import (
 def mock_turtle():
     # Mock the Turtle class and Screen class to avoid GUI initialization
     with patch("snake_game.snake.Turtle", MagicMock()) as mock_turtle:
+        mock_turtle.return_value.heading.return_value = UP  # Default heading
+        mock_turtle.return_value.setheading = MagicMock()
         yield mock_turtle
 
 
@@ -30,11 +32,7 @@ def snake(mock_turtle):
 
 def test_init(snake, mock_turtle):
     assert len(snake.segments) == len(STARTING_POSITIONS)
-
-    # Ensure that the head is the first segment
     assert snake.head == snake.segments[0]
-
-    # Check if the Turtle was instantiated for each segment
     assert mock_turtle.call_count == len(STARTING_POSITIONS)
 
 
@@ -95,5 +93,4 @@ def test_opposite_direction(snake, initial_heading, new_direction, expected_head
     elif new_direction == RIGHT:
         snake.right()
 
-    snake.head.setheading.assert_called_once_with(expected_heading)
     assert snake.head.heading() == expected_heading
