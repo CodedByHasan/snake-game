@@ -17,34 +17,25 @@ from snake_game.constants import (
 
 
 @pytest.fixture
-def snake():
+def mock_turtle():
     # Mock the Turtle class and Screen class to avoid GUI initialization
-    with patch("snake_game.snake.Turtle", MagicMock(), autospec=True) as mock_turtle, \
-         patch("turtle.Screen", MagicMock()):
-        return Snake()
+    with patch("snake_game.snake.Turtle", MagicMock()) as mock_turtle:
+        yield mock_turtle
 
 
 @pytest.fixture
-def snake_head():
-    """
-    Create a fixture for snake.head to mock it once and
-    reuse in multiple tests.
-    """
-    mock_head = MagicMock()
-    mock_head.heading.return_value = LEFT
-    return mock_head
+def snake(mock_turtle):
+    return Snake()
 
 
-@pytest.fixture
-def snake(snake_head):
-    snake_instance = Snake()
-    # Inject the mocked head into the Snake instance
-    snake_instance.head = snake_head
-    return snake_instance
-
-
-def test_init(snake):
+def test_init(snake, mock_turtle):
     assert len(snake.segments) == len(STARTING_POSITIONS)
+
+    # Ensure that the head is the first segment
+    assert snake.head == snake.segments[0]
+
+    # Check if the Turtle was instantiated for each segment
+    assert mock_turtle.call_count == len(STARTING_POSITIONS)
 
 
 def test_up(snake):
