@@ -1,6 +1,6 @@
 # Snake-game
 
-![Github Workflow](https://github.com/codedByHasan/snake-game/actions/workflows/pytest.yml/badge.svg)
+![Github Workflow](https://github.com/codedByHasan/snake-game/actions/workflows/main.yml/badge.svg)
 
 ## Getting Started
 
