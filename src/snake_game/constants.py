@@ -9,3 +9,6 @@ RIGHT = 0
 # Scoreboard constants
 ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
+
+# High score file path
+HIGH_SCORE = "./high_score.txt"

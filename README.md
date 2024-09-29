@@ -1,5 +1,7 @@
 # Snake-game
 
+![Github Workflow](https://github.com/codedByHasan/snake-game/actions/workflows/main.yml/badge.svg)
+
 ## Getting Started
 
 > Note: It is assumed you are in the . directory.
