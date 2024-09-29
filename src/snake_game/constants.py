@@ -9,3 +9,5 @@ RIGHT = 0
 # Scoreboard constants
 ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
+
+HIGH_SCORE = "./score.txt"
