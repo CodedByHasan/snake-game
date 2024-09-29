@@ -10,4 +10,5 @@ RIGHT = 0
 ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
 
+# High score file path
 HIGH_SCORE = "./score.txt"
